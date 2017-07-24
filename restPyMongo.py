@@ -11,6 +11,7 @@ app.config['MONGO_URI'] = 'mongodb://pratikdhage:thedarkknightrises@ds119223.mla
 
 mongo = PyMongo(app)
 
+
 @app.route('/')
 def about_cities():
     return render_template('cities.html')
@@ -76,5 +77,7 @@ def delete_city(name):
         output = 'Sorry !....no results found.'
     return jsonify({'deleted': output})
 
+
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.debug = True
+    app.run(host="0.0.0.0", port=8000)
