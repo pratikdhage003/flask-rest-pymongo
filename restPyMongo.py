@@ -16,7 +16,6 @@ def about_cities():
     return render_template('cities.html')
 
 
-
 # HTTP GET request for displaying all cities
 @app.route('/cities', methods=['GET'])
 def get_all_cities():
@@ -49,7 +48,6 @@ def add_city():
     new_city = cities.find_one({'_id': city_id})
     output = {'name': new_city['name'], 'state': new_city['state']}
     return jsonify({'output': output})
-
 
 
 # HTTP PUT request for modifying existing city city
