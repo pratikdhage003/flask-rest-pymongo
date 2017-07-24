@@ -21,7 +21,6 @@ def about_cities():
 def get_all_cities():
     cities = mongo.db.cities
     results = []
-
     for q in cities.find():
         results.append({'name': q['name'], 'state': q['state']})
     return jsonify({'result': results})
@@ -43,10 +42,8 @@ def add_city():
     cities = mongo.db.cities
     cityname = request.json['name']
     state = request.json['state']
-
     city_id = cities.insert({'name': cityname, 'state': state})
     new_city = cities.find_one({'_id': city_id})
-
     output = {'name': new_city['name'], 'state': new_city['state']}
     return jsonify({'output': output})
 
@@ -57,7 +54,6 @@ def update_city(name):
     cities = mongo.db.cities
     data = request.get_json()
     q = cities.find_one({'name': name})
-
     if q:
         output = data['name']
         mongo.db.cities.update_one({'name': name}, {'$set': data})
@@ -71,7 +67,6 @@ def update_city(name):
 def delete_city(name):
     cities = mongo.db.cities
     q = cities.find_one({'name': name})
-
     if q:
         output = q['name']
         mongo.db.cities.delete_one({'name': name})
