@@ -16,6 +16,7 @@ def about_cities():
     return render_template('cities.html')
 
 
+
 # HTTP GET request for displaying all cities
 @app.route('/cities', methods=['GET'])
 def get_all_cities():
@@ -24,6 +25,7 @@ def get_all_cities():
     for q in cities.find():
         results.append({'name': q['name'], 'state': q['state']})
     return jsonify({'result': results})
+
 
 # HTTP GET request for displaying a particular city
 @app.route('/cities/<string:name>', methods=['GET'])
@@ -36,6 +38,7 @@ def get_city(name):
         output = 'Sorry !....no results found.'
     return jsonify({'output': output})
 
+
 # HTTP POST request for adding new city
 @app.route('/cities', methods=['POST'])
 def add_city():
@@ -46,6 +49,7 @@ def add_city():
     new_city = cities.find_one({'_id': city_id})
     output = {'name': new_city['name'], 'state': new_city['state']}
     return jsonify({'output': output})
+
 
 
 # HTTP PUT request for modifying existing city city
