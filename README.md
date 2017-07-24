@@ -10,6 +10,10 @@ python3.6 ./restPyMongo.py inside flaskvirtualenvironment
 
 # restPyMongo.py is the file containing all RESTful URI's implemented using HTTP methods as follows :
 
+In postman type 127.0.0.1:5000/ ---->
+@app.route('/')
+def about_cities():
+
 In postman type 127.0.0.1:5000/cities  ---->
 @app.route('/cities', methods=['GET'])
 def get_all_cities()
