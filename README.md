@@ -1,7 +1,7 @@
-# flask-rest-pymongo
 # AUTHOR : PRATIK DHAGE
+# flask-rest-pymongo
 
-This is a RESTful web application for cities, implmented using
+This is a RESTful web application for cities, implemented using
 Flask, Python 3.6, MongoDB, PyMongo, virtualenv, pip, postman and remote mLab server for MongoDB database.
 
 # How to Run :
