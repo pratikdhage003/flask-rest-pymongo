@@ -23,17 +23,17 @@ def get_all_cities():
     cities = mongo.db.cities
     results = []
     for q in cities.find():
-        results.append({'name': q['name'], 'state': q['state']})
+        results.append({'cname': q['cname'], 'state': q['state']})
     return jsonify({'result': results})
 
 
 # HTTP GET request for displaying a particular city
-@app.route('/cities/<string:name>', methods=['GET'])
-def get_city(name):
+@app.route('/cities/<string:cname>', methods=['GET'])
+def get_city(cname):
     cities = mongo.db.cities
-    q = cities.find_one({'name': name})
+    q = cities.find_one({'cname': cname})
     if q:
-        output = {'name': q['name'], 'state': q['state']}
+        output = {'cname': q['cname'], 'state': q['state']}
     else:
         output = 'Sorry !....no results found.'
     return jsonify({'output': output})
@@ -43,36 +43,36 @@ def get_city(name):
 @app.route('/cities', methods=['POST'])
 def add_city():
     cities = mongo.db.cities
-    cityname = request.json['name']
+    cityname = request.json['cname']
     state = request.json['state']
-    city_id = cities.insert({'name': cityname, 'state': state})
+    city_id = cities.insert({'cname': cityname, 'state': state})
     new_city = cities.find_one({'_id': city_id})
-    output = {'name': new_city['name'], 'state': new_city['state']}
+    output = {'cname': new_city['cname'], 'state': new_city['state']}
     return jsonify({'output': output})
 
 
 # HTTP PUT request for modifying existing city city
-@app.route('/cities/<string:name>', methods=['PUT'])
-def update_city(name):
+@app.route('/cities/<string:cname>', methods=['PUT'])
+def update_city(cname):
     cities = mongo.db.cities
     data = request.get_json()
-    q = cities.find_one({'name': name})
+    q = cities.find_one({'cname': cname})
     if q:
-        output = data['name']
-        mongo.db.cities.update_one({'name': name}, {'$set': data})
+        output = data['cname']
+        mongo.db.cities.update_one({'cname': cname}, {'$set': data})
     else:
         output = 'Sorry !....no results found.'
-    return jsonify({'name': output})
+    return jsonify({'cname': output})
 
 
 # HTTP DELETE request for deleting/removing a particular city
-@app.route('/cities/<string:name>', methods=['DELETE'])
-def delete_city(name):
+@app.route('/cities/<string:cname>', methods=['DELETE'])
+def delete_city(cname):
     cities = mongo.db.cities
-    q = cities.find_one({'name': name})
+    q = cities.find_one({'cname': cname})
     if q:
-        output = q['name']
-        mongo.db.cities.delete_one({'name': name})
+        output = q['cname']
+        mongo.db.cities.delete_one({'cname': cname})
     else:
         output = 'Sorry !....no results found.'
     return jsonify({'deleted': output})
