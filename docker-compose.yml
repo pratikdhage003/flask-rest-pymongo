@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  flask-rest-service:
+    build: ./app
+    volumes:
+      - ./app:/usr/src/app
+    ports:
+      - 5001:80
