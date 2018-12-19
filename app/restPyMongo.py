@@ -6,8 +6,9 @@ from flask import Flask, request, jsonify, render_template
 from flask_pymongo import PyMongo
 
 app = Flask(__name__)
-app.config['MONGO_DBNAME'] = 'rest_python_mongo'
-app.config['MONGO_URI'] = 'mongodb://pratikdhage:thedarkknightrises@ds119223.mlab.com:19223/rest_python_mongo'
+
+app.config['MONGO_DBNAME'] = 'angularjs-python-mongo'
+app.config['MONGO_URI'] = 'mongodb://pratikdhage009:thedarkknightrises009@ds147942.mlab.com:47942/angularjs-python-mongo'
 
 mongo = PyMongo(app)
 
